@@ -96,7 +96,7 @@ public class PhoneScreenClient implements ClientModInitializer {
 		//
 
 		HudElementRegistry.attachElementAfter(
-				VanillaHudElements.CROSSHAIR,
+				VanillaHudElements.SUBTITLES,
 				PHONE_OVERLAY_ID,
 				(guiGraphics, deltaTracker) -> {
 					renderOverlay(guiGraphics);
@@ -151,7 +151,7 @@ public class PhoneScreenClient implements ClientModInitializer {
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) ->
 			dispatcher.register(ClientCommands.literal("phonescreen")
 					.then(ClientCommands.literal("wifi")
-							.then(ClientCommands.argument("address", StringArgumentType.word())
+							.then(ClientCommands.argument("address", StringArgumentType.greedyString())
 									.executes(context -> {
 									String address = StringArgumentType.getString(context, "address");
 									if (!address.equalsIgnoreCase("off") && !isValidWirelessAddress(address)) {
